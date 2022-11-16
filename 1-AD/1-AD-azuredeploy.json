@@ -268,11 +268,6 @@
     "createADTemplateUri": "https://github.com/AntiSyphon/asaz-temp/raw/main/1-AD/templates/createADForest.json",
     "AddADUsersuri": "https://github.com/AntiSyphon/asaz-temp/raw/main/1-AD/templates/AddADUsers.json",
     "joinDomainTemplateUri": "https://github.com/AntiSyphon/asaz-temp/raw/main/1-AD/templates/joinDomain.json",
-    "badbloodTemplateUri": "https://github.com/AntiSyphon/asaz-temp/raw/main/1-AD/templates/badblood.json",
-    "SPNTemplateUri": "https://github.com/AntiSyphon/asaz-temp/raw/main/1-AD/templates/addspns.json",
-    "FileSharesTemplateUri": "https://github.com/AntiSyphon/asaz-temp/raw/main/1-AD/templates/fileshares.json",
-    "ACDSTemplateUri": "https://github.com/AntiSyphon/asaz-temp/raw/main/1-AD/templates/acds.json",
-    "PivotLab1TemplateUri": "https://github.com/AntiSyphon/asaz-temp/raw/main/1-AD/templates/pivotlab.json",
     "Lab_DC_CradleURI": "https://github.com/AntiSyphon/asaz-temp/raw/main/1-AD/templates/lab_dc.json",
     "Lab_SVR_CradleURI": "https://github.com/AntiSyphon/asaz-temp/raw/main/1-AD/templates/lab_svr.json",
     "Lab_WS_CradleURI": "https://github.com/AntiSyphon/asaz-temp/raw/main/1-AD/templates/lab_ws.json",
@@ -292,12 +287,6 @@
     "createADForestScript": "https://github.com/AntiSyphon/asaz-temp/raw/main/1-AD/DSC/Create-AD.zip",
     "AddUsersScript": "https://github.com/AntiSyphon/asaz-temp/raw/main/1-AD/DSC/AddUsers1.zip",
     "joinDomainScript": "https://github.com/AntiSyphon/asaz-temp/raw/main/1-AD/DSC/Join-Domain.zip",
-    "installSysmonScript": "https://github.com/AntiSyphon/asaz-temp/raw/main/1-AD/DSC/Install-Sysmon.zip",
-    "badbloodScript": "https://github.com/AntiSyphon/asaz-temp/raw/main/1-AD/DSC/badblood.zip",
-    "spnsScript": "https://github.com/AntiSyphon/asaz-temp/raw/main/1-AD/DSC/spns.zip",
-    "filesharesScript": "https://github.com/AntiSyphon/asaz-temp/raw/main/1-AD/DSC/fileshares.zip",
-    "acdsScript": "https://github.com/AntiSyphon/asaz-temp/raw/main/1-AD/DSC/ADCS.zip",
-    "pivotlabScript": "https://github.com/AntiSyphon/asaz-temp/raw/main/1-AD/DSC/pivotlab.zip",
     "LAB_DC_CradleScript": "https://github.com/AntiSyphon/asaz-temp/raw/main/1-AD/DSC/lab_dc.zip",
     "LAB_SVR_CradleScript": "https://github.com/AntiSyphon/asaz-temp/raw/main/1-AD/DSC/lab_svr.zip",
     "LAB_WS_CradleScript": "https://github.com/AntiSyphon/asaz-temp/raw/main/1-AD/DSC/lab_ws.zip",
@@ -665,187 +654,12 @@
       }
     },
     {
-      "name": "DC1-Badblood",
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2019-10-01",
-      "dependsOn": [
-        "DC1-PivotLab1"
-      ],
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri": "[variables('badbloodTemplateUri')]",
-          "contentVersion": "1.0.0.0"
-        },
-        "parameters": {
-          "vmName": {
-            "value": "[variables('domainController')[0].vmName]"
-          },
-          "badbloodScript": {
-            "value": "[variables('badbloodScript')]"
-          },
-          "domainFQDN": {
-            "value": "[parameters('domainFQDN')]"
-          },
-          "adminUsername": {
-            "value": "[parameters('adminUsername')]"
-          },
-          "adminPassword": {
-            "value": "[parameters('adminPassword')]"
-          },
-          "location": {
-            "value": "[parameters('location')]"
-          }
-        }
-      }
-    },
-    {
-      "name": "DC1-AddSPNs",
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2019-10-01",
-      "dependsOn": [
-        "DC1-AddADUsers"
-      ],
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri": "[variables('SPNTemplateUri')]",
-          "contentVersion": "1.0.0.0"
-        },
-        "parameters": {
-          "vmName": {
-            "value": "[variables('domainController')[0].vmName]"
-          },
-          "spnsScript": {
-            "value": "[variables('spnsScript')]"
-          },
-          "domainFQDN": {
-            "value": "[parameters('domainFQDN')]"
-          },
-          "adminUsername": {
-            "value": "[parameters('adminUsername')]"
-          },
-          "adminPassword": {
-            "value": "[parameters('adminPassword')]"
-          },
-          "location": {
-            "value": "[parameters('location')]"
-          }
-        }
-      }
-    },
-    {
-      "name": "DC1-PivotLab1",
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2019-10-01",
-      "dependsOn": [
-        "DC1-AddSPNs"
-      ],
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri": "[variables('PivotLab1TemplateUri')]",
-          "contentVersion": "1.0.0.0"
-        },
-        "parameters": {
-          "vmName": {
-            "value": "[variables('domainController')[0].vmName]"
-          },
-          "pivotlabScript": {
-            "value": "[variables('pivotlabScript')]"
-          },
-          "domainFQDN": {
-            "value": "[parameters('domainFQDN')]"
-          },
-          "adminUsername": {
-            "value": "[parameters('adminUsername')]"
-          },
-          "adminPassword": {
-            "value": "[parameters('adminPassword')]"
-          },
-          "location": {
-            "value": "[parameters('location')]"
-          }
-        }
-      }
-    },
-    {
-      "name": "SRV01-Fileshares",
+      "name": "lab_svr",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2019-10-01",
       "dependsOn": [
         "SRV01-joinDomain",
         "DC1-AddADUsers"
-      ],
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri": "[variables('FileSharesTemplateUri')]",
-          "contentVersion": "1.0.0.0"
-        },
-        "parameters": {
-          "vmName": {
-            "value": "[variables('MemberServer')[0].vmName]"
-          },
-          "filesharesScript": {
-            "value": "[variables('filesharesScript')]"
-          },
-          "domainFQDN": {
-            "value": "[parameters('domainFQDN')]"
-          },
-          "adminUsername": {
-            "value": "[parameters('adminUsername')]"
-          },
-          "adminPassword": {
-            "value": "[parameters('adminPassword')]"
-          },
-          "location": {
-            "value": "[parameters('location')]"
-          }
-        }
-      }
-    },
-    {
-      "name": "SRV01-ADCS",
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2019-10-01",
-      "dependsOn": [
-        "SRV01-Fileshares"
-      ],
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri": "[variables('ACDSTemplateUri')]",
-          "contentVersion": "1.0.0.0"
-        },
-        "parameters": {
-          "vmName": {
-            "value": "[variables('MemberServer')[0].vmName]"
-          },
-          "acdsScript": {
-            "value": "[variables('acdsScript')]"
-          },
-          "domainFQDN": {
-            "value": "[parameters('domainFQDN')]"
-          },
-          "adminUsername": {
-            "value": "[parameters('adminUsername')]"
-          },
-          "adminPassword": {
-            "value": "[parameters('adminPassword')]"
-          },
-          "location": {
-            "value": "[parameters('location')]"
-          }
-        }
-      }
-    },
-    {
-      "name": "lab_svr",
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2019-10-01",
-      "dependsOn": [
-        "SRV01-ADCS"
       ],
       "properties": {
         "mode": "Incremental",
@@ -880,7 +694,7 @@
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2019-10-01",
       "dependsOn": [
-        "DC1-Badblood"
+        "DC1-AddADUsers"
       ],
       "properties": {
         "mode": "Incremental",
