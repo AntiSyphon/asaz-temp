@@ -30,46 +30,6 @@
       "defaultValue": {
         "array": [
           {
-            "FirstName": "Bridget",
-            "LastName": "Horrarah",
-            "SamAccountName": "bhorrarah",
-            "Department": "Human Resources",
-            "JobTitle": "HR Director",
-            "Password": "Jingle4Days!!",
-            "Identity": "Users",
-            "UserContainer": "DomainUsers"
-          },
-          {
-            "FirstName": "Sandy",
-            "LastName": "Silver",
-            "SamAccountName": "ssilver",
-            "Department": "IT Support",
-            "JobTitle": "CIO",
-            "Password": "RedFindings1Again!",
-            "Identity": "Domain Admins",
-            "UserContainer": "DomainUsers"
-          },
-          {
-            "FirstName": "Christopher",
-            "LastName": "Liken",
-            "SamAccountName": "cliken",
-            "Department": "Accounting",
-            "JobTitle": "VP",
-            "Password": "Broncos40!",
-            "Identity": "Users",
-            "UserContainer": "DomainUsers"
-          },
-          {
-            "FirstName": "Betty",
-            "LastName": "Cleaver",
-            "SamAccountName": "bcleaver",
-            "Department": "Sales",
-            "JobTitle": "Sales Engineer",
-            "Password": "LeastFavoriteMonday1!",
-            "Identity": "Users",
-            "UserContainer": "DomainUsers"
-          },
-          {
             "FirstName": "Sysmon",
             "LastName": "MS",
             "SamAccountName": "sysmonsvc",
