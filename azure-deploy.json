@@ -61,7 +61,7 @@
     "ASAZLabCode": {
       "type": "string",
       "allowedValues": [
-        "ASAZ-ACO"
+        "ASAZ-TEMP"
       ],
       "defaultValue": "ASAZ-",
       "metadata": {
